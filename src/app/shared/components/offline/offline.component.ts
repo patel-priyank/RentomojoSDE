@@ -21,6 +21,7 @@ export class OfflineComponent implements OnInit {
 
   //#region Public methods
 
+  // refresh the page
   public refresh(): void {
     location = location;
   }

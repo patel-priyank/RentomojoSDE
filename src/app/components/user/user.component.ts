@@ -132,6 +132,11 @@ export class UserComponent implements OnInit {
 
   //#region Public Methods
 
+  // go back one page
+  public goBack(): void {
+    this.router.navigate(['']);
+  }
+
   // page change event for pagination
   public pageChange(page): void {
     this.currentPage = page;

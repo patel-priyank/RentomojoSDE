@@ -105,6 +105,11 @@ export class PostComponent implements OnInit {
 
   //#region Public Methods
 
+  // go back one page
+  public goBack(): void {
+    this.router.navigate(['user', this.userID]);
+  }
+
   // show or hide comments section
   public toggleComments(): void {
     this.showComments = !this.showComments;

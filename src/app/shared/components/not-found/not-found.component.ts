@@ -21,6 +21,7 @@ export class NotFoundComponent implements OnInit {
 
   //#region Public methods
 
+  // navigate to home page
   public navigateToHome(): void {
     this.router.navigate(['']);
   }

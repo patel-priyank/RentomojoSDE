@@ -11,6 +11,10 @@
 
       <div *ngIf="userDetails && userPostsToDisplay">
         <div class="row d-flex justify-content-end">
+          <div class="col-md-6 mb-1">
+            <button type="button" class="btn btn-outline-secondary" (click)="goBack()">Go Back</button>
+          </div>
+
           <div class="col-md-6">
             <input type="text" class="form-control mb-3" placeholder="Type to search ..." [(ngModel)]="searchText" />
           </div>
