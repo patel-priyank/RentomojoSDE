@@ -1,1 +1,15 @@
-<p>user works!</p>
+<h1 *ngIf="!userDetails">user name loading ...</h1>
+
+<h1 *ngIf="userDetails">
+  {{ userDetails.name }}
+</h1>
+
+<div *ngIf="!userPosts">posts loading ...</div>
+
+<div *ngIf="userPosts">
+  <tr *ngFor="let item of userPosts">
+    <td>
+      <a [routerLink]="[item.id]">{{ item.title }}</a>
+    </td>
+  </tr>
+</div>

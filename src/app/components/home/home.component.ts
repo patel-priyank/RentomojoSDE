@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/shared/services/app.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  public allUsers: any;
 
-  ngOnInit(): void {}
+  constructor(public appService: AppService) {}
+
+  ngOnInit(): void {
+    this.fetchUsers();
+  }
+
+  private async fetchUsers(): Promise<void> {
+    await this.appService.fetchUsers().subscribe((r) => {
+      this.allUsers = r;
+    });
+  }
 }

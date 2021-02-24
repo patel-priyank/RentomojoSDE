@@ -1,1 +1,17 @@
-<p>home works!</p>
+<div *ngIf="!allUsers">users loading ...</div>
+
+<div *ngIf="allUsers">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Company</th>
+    </tr>
+    <tr *ngFor="let user of allUsers">
+      <td>{{ user.name }}</td>
+      <td>{{ user.company.name }}</td>
+      <td>
+        <a [routerLink]="[user.id]">posts</a>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,1 +1,28 @@
-<p>post works!</p>
+<button type="button" (click)="fetchComments()">Comments</button>
+<button type="button" (click)="deletePost()">Delete</button>
+
+<div *ngIf="!postDetails">post loading ...</div>
+
+<div *ngIf="postDetails">
+  <h1>{{ postDetails.title }}</h1>
+  <p>{{ postDetails.body }}</p>
+</div>
+
+<div *ngIf="showComments">
+  <div *ngIf="!postComments">comments loading ...</div>
+
+  <div *ngIf="postComments">
+    <div *ngFor="let comment of postComments">
+      <ul>
+        <li>
+          <p>{{ comment.name }}</p>
+        </li>
+        <ul>
+          <li>
+            <p>{{ comment.body }}</p>
+          </li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</div>
