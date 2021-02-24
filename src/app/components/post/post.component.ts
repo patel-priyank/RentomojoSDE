@@ -50,6 +50,10 @@ export class PostComponent implements OnInit {
     this.userID = Number(this.activatedRoute.snapshot.paramMap.get('userID'));
     this.postID = Number(this.activatedRoute.snapshot.paramMap.get('postID'));
 
+    if (!Number.isInteger(this.userID) || !Number.isInteger(this.postID)) {
+      this.router.navigate(['404']);
+    }
+
     this.postDetails = null;
     this.postComments = null;
     this.commentsBtnText = 'Show Comments';
