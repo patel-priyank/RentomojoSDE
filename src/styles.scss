@@ -23,6 +23,10 @@
   cursor: pointer;
 }
 
+.img-muted {
+  filter: invert(44%) sepia(10%) saturate(383%) hue-rotate(167deg) brightness(100%) contrast(92%);
+}
+
 .loader {
   border: 16px solid #f3f3f3;
   border-top: 16px solid #007bff;
