@@ -14,11 +14,13 @@
           <div class="row d-flex justify-content-end">
             <div class="col-md-6 mb-1">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-outline-primary active">
-                  <input type="radio" name="viewOptions" id="listView" checked (click)="toggleView()" /> List View
+                <label class="btn btn-outline-primary">
+                  <input type="radio" id="listViewBtn" (click)="showListView()" />
+                  List View
                 </label>
                 <label class="btn btn-outline-primary">
-                  <input type="radio" name="viewOptions" id="cardsView" (click)="toggleView()" /> Cards View
+                  <input type="radio" id="cardViewBtn" (click)="showCardView()" />
+                  Card View
                 </label>
               </div>
             </div>

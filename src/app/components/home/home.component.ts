@@ -41,7 +41,8 @@ export class HomeComponent implements OnInit {
     this.allUsers = null;
     this.showUhOh = false;
     this.isOffline = false;
-    this.listView = true;
+
+    this.listView = typeof Storage !== 'undefined' && localStorage.getItem('listView') !== 'false';
   }
 
   // check offline status
@@ -55,6 +56,16 @@ export class HomeComponent implements OnInit {
       (r) => {
         if (r) {
           this.allUsers = r;
+
+          setTimeout(() => {
+            if (this.listView) {
+              document.getElementById('listViewBtn').click();
+              document.getElementById('listViewBtn').blur();
+            } else {
+              document.getElementById('cardViewBtn').click();
+              document.getElementById('cardViewBtn').blur();
+            }
+          }, 0);
         } else {
           this.showUhOh = true;
         }
@@ -69,15 +80,20 @@ export class HomeComponent implements OnInit {
 
   //#region Public methods
 
-  // toggle between list view and cards view
-  public toggleView(): void {
-    this.listView = !this.listView;
+  // show list view
+  public showListView(): void {
+    this.listView = true;
+    localStorage.setItem('listView', this.listView.toString());
+  }
 
-    if (!this.listView) {
-      setTimeout(() => {
-        this.appService.switchColors();
-      }, 0);
-    }
+  // show card view
+  public showCardView(): void {
+    this.listView = false;
+    localStorage.setItem('listView', this.listView.toString());
+
+    setTimeout(() => {
+      this.appService.switchColors();
+    }, 0);
   }
 
   // navigate to user screen
