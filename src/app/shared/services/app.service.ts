@@ -24,11 +24,8 @@ export class AppService {
   }
 
   // fetch user posts
-  public fetchUserPosts(userID: number, skip: number, limit: number): any {
-    skip = skip ? skip : 0;
-    limit = limit ? limit : 10;
-
-    return this.http.get(this._apiUrl + `posts?userId=${userID}&skip=${skip}&limit=${limit}`);
+  public fetchUserPosts(userID: number): any {
+    return this.http.get(this._apiUrl + `posts?userId=${userID}`);
   }
 
   // fetch post details

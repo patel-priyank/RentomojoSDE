@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppService } from 'src/app/shared/services/app.service';
 
 @Component({
@@ -7,17 +8,64 @@ import { AppService } from 'src/app/shared/services/app.service';
   styles: []
 })
 export class HomeComponent implements OnInit {
-  public allUsers: any;
+  //#region Variables
 
-  constructor(public appService: AppService) {}
+  public allUsers: any; // to store user data from API
+  public showUhOh: boolean; // show uh-oh screen when API fails
+  public searchText: string; // search text
+  public isOffline: boolean; // check offline status
+
+  //#endregion
+
+  //#region Constructor
+
+  constructor(public appService: AppService, private router: Router) {}
+
+  //#endregion
+
+  //#region Angular methods
 
   ngOnInit(): void {
+    this.initVariables();
+    this.checkOffline();
     this.fetchUsers();
   }
 
+  //#endregion
+
+  //#region Private methods
+
+  // initialize local variables
+  private initVariables(): void {
+    this.allUsers = null;
+    this.showUhOh = false;
+    this.isOffline = false;
+  }
+
+  // check offline status
+  private checkOffline(): void {
+    this.isOffline = !navigator.onLine;
+  }
+
+  // fetch user list
   private async fetchUsers(): Promise<void> {
     await this.appService.fetchUsers().subscribe((r) => {
-      this.allUsers = r;
+      if (r) {
+        this.allUsers = r;
+      } else {
+        this.showUhOh = true;
+      }
     });
   }
+
+  //#endregion
+
+  //#region Public methods
+
+  // navigate to user screen
+  public navigateToUser(user: any) {
+    this.router.navigate(['user', user.id]);
+  }
+
+  //#endregion
 }

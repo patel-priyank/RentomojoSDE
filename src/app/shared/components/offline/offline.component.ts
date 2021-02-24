@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-uh-oh',
-  templateUrl: './uh-oh.component.html',
+  selector: 'app-offline',
+  templateUrl: './offline.component.html',
   styles: []
 })
-export class UhOhComponent implements OnInit {
+export class OfflineComponent implements OnInit {
   //#region Constructor
 
   constructor(private router: Router) {}
@@ -24,4 +24,6 @@ export class UhOhComponent implements OnInit {
   public refresh(): void {
     location = location;
   }
+
+  //#endregion
 }
