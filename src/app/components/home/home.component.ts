@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   public showUhOh: boolean; // show uh-oh screen when API fails
   public searchText: string; // search text
   public isOffline: boolean; // check offline status
+  public listView: boolean; // to toggle views
 
   //#endregion
 
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     this.allUsers = null;
     this.showUhOh = false;
     this.isOffline = false;
+    this.listView = true;
   }
 
   // check offline status
@@ -61,6 +63,11 @@ export class HomeComponent implements OnInit {
   //#endregion
 
   //#region Public methods
+
+  // toggle between list view and cards view
+  public toggleView(): void {
+    this.listView = !this.listView;
+  }
 
   // navigate to user screen
   public navigateToUser(user: any) {

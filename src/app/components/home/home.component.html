@@ -12,6 +12,17 @@
 
         <div *ngIf="allUsers">
           <div class="row d-flex justify-content-end">
+            <div class="col-md-6 mb-1">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-outline-primary active">
+                  <input type="radio" name="viewOptions" id="listView" checked (click)="toggleView()" /> List View
+                </label>
+                <label class="btn btn-outline-primary">
+                  <input type="radio" name="viewOptions" id="cardsView" (click)="toggleView()" /> Cards View
+                </label>
+              </div>
+            </div>
+
             <div class="col-md-6">
               <input type="text" class="form-control mb-3" placeholder="Type to search ..." [(ngModel)]="searchText" />
             </div>
@@ -19,32 +30,77 @@
 
           <p class="h1">Users</p>
 
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th style="width: 10%"></th>
-                <th style="width: 45%">Name</th>
-                <th style="width: 45%">Company</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                class="pointer"
-                *ngFor="
-                  let user of allUsers
-                    | SearchFilter
-                      : searchText
-                      : ['id', 'username', 'email', 'address', 'phone', 'website', 'company.catchPhrase', 'company.bs'];
-                  let i = index
-                "
-                (click)="navigateToUser(user)"
+          <div *ngIf="listView">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th style="width: 10%"></th>
+                  <th style="width: 45%">Name</th>
+                  <th style="width: 45%">Company</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="pointer"
+                  *ngFor="
+                    let user of allUsers
+                      | SearchFilter
+                        : searchText
+                        : [
+                            'id',
+                            'username',
+                            'email',
+                            'address',
+                            'phone',
+                            'website',
+                            'company.catchPhrase',
+                            'company.bs'
+                          ];
+                    let i = index
+                  "
+                  (click)="navigateToUser(user)"
+                >
+                  <th>{{ i + 1 }}</th>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.company.name }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div *ngIf="!listView" class="row d-flex justify-content-between">
+            <div
+              class="pointer card ml-3 mr-3 mb-3"
+              style="width: 20rem"
+              *ngFor="
+                let user of allUsers
+                  | SearchFilter
+                    : searchText
+                    : ['id', 'username', 'email', 'address', 'phone', 'website', 'company.catchPhrase', 'company.bs'];
+                let i = index
+              "
+              (click)="navigateToUser(user)"
+            >
+              <svg
+                class="bd-placeholder-img card-img-top"
+                width="100%"
+                height="180"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="Placeholder: Image cap"
+                preserveAspectRatio="xMidYMid slice"
+                focusable="false"
               >
-                <th>{{ i + 1 }}</th>
-                <td>{{ user.name }}</td>
-                <td>{{ user.company.name }}</td>
-              </tr>
-            </tbody>
-          </table>
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#f8f9fa"></rect>
+              </svg>
+
+              <div class="card-body">
+                <h5 class="card-title">{{ user.name }}</h5>
+                <p class="card-text">{{ user.company.name }}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
