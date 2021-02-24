@@ -67,6 +67,12 @@ export class HomeComponent implements OnInit {
   // toggle between list view and cards view
   public toggleView(): void {
     this.listView = !this.listView;
+
+    if (!this.listView) {
+      setTimeout(() => {
+        this.appService.switchColors();
+      }, 0);
+    }
   }
 
   // navigate to user screen

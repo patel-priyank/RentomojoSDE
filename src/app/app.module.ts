@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { NgBootstrapDarkmodeModule } from 'ng-bootstrap-darkmode';
 
 import { getApiUrl } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +33,7 @@ import { SearchFilterPipe } from './shared/pipes/search-filter.pipe';
     StringFilterPipe,
     SearchFilterPipe
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule, NgBootstrapDarkmodeModule],
   providers: [
     {
       provide: 'apiUrl',

@@ -1,14 +1,22 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-darkmode/darktheme';
 
 .user-card {
   transition: transform 0.2s;
-  box-shadow: 5px 5px 10px 0 rgba(30, 0, 0, 0.1);
 }
 
 .user-card:hover {
   z-index: 99;
   transform: scale(1.15);
+}
+
+.user-card-shadow-light {
+  box-shadow: 0 0.5rem 1rem rgba(30, 0, 0, 0.15);
+}
+
+.user-card-shadow-dark {
+  box-shadow: 0 0.5rem 1rem rgba(255, 225, 225, 0.15);
 }
 
 .pointer {

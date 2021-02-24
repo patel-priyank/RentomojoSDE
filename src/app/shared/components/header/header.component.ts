@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../../services/app.service';
+import { ThemeService } from 'ng-bootstrap-darkmode';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private themeService: ThemeService, private appService: AppService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.themeService.theme$.subscribe((theme) => {
+      this.appService.switchColors();
+    });
+  }
 }
