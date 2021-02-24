@@ -1,12 +1,12 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-.card {
+.user-card {
   transition: transform 0.2s;
   box-shadow: 5px 5px 10px 0 rgba(30, 0, 0, 0.1);
 }
 
-.card:hover {
+.user-card:hover {
   z-index: 99;
   transform: scale(1.15);
 }
