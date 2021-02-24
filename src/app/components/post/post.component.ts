@@ -71,24 +71,34 @@ export class PostComponent implements OnInit {
 
   // fetch post details
   private async fetchPostDetails(): Promise<void> {
-    await this.appService.fetchPostDetails(this.postID).subscribe((r) => {
-      if (r) {
-        this.postDetails = r;
-      } else {
+    await this.appService.fetchPostDetails(this.postID).subscribe(
+      (r) => {
+        if (r) {
+          this.postDetails = r;
+        } else {
+          this.showPostUhOh = true;
+        }
+      },
+      () => {
         this.showPostUhOh = true;
       }
-    });
+    );
   }
 
   // fetch post comments
   private async fetchComments(): Promise<void> {
-    await this.appService.fetchPostComments(this.postID).subscribe((r) => {
-      if (r) {
-        this.postComments = r;
-      } else {
+    await this.appService.fetchPostComments(this.postID).subscribe(
+      (r) => {
+        if (r) {
+          this.postComments = r;
+        } else {
+          this.showCommentsUhOh = true;
+        }
+      },
+      () => {
         this.showCommentsUhOh = true;
       }
-    });
+    );
   }
 
   //#endregion

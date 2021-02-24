@@ -67,44 +67,54 @@ export class UserComponent implements OnInit {
 
   // fetch user details
   private async fetchUserDetails(): Promise<void> {
-    await this.appService.fetchUserDetails(this.userID).subscribe((r) => {
-      if (r) {
-        this.userDetails = r;
-      } else {
+    await this.appService.fetchUserDetails(this.userID).subscribe(
+      (r) => {
+        if (r) {
+          this.userDetails = r;
+        } else {
+          this.showUhOh = true;
+        }
+      },
+      () => {
         this.showUhOh = true;
       }
-    });
+    );
   }
 
   // fetch user posts
   private async fetchUserPosts(): Promise<void> {
-    await this.appService.fetchUserPosts(this.userID).subscribe((r) => {
-      if (r) {
-        this.userPosts = r;
+    await this.appService.fetchUserPosts(this.userID).subscribe(
+      (r) => {
+        if (r) {
+          this.userPosts = r;
 
-        this.collectionSize = this.userPosts.length;
-        this.pageSize = this.calculateDefaultPageSize(this.collectionSize);
-        this.currentPage = 1;
+          this.collectionSize = this.userPosts.length;
+          this.pageSize = this.calculateDefaultPageSize(this.collectionSize);
+          this.currentPage = 1;
 
-        this.pageChange(1);
+          this.pageChange(1);
 
-        for (let i = 0; i < this.collectionSize; ++i) {
-          this.userPosts[i].index = i;
-        }
-
-        var posts = [];
-
-        for (let i = 0; i < this.collectionSize; ++i) {
-          if (this.userPosts[i].index >= this.skip && this.userPosts[i].index < this.limit) {
-            posts.push(this.userPosts[i]);
+          for (let i = 0; i < this.collectionSize; ++i) {
+            this.userPosts[i].index = i;
           }
-        }
 
-        this.userPostsToDisplay = posts;
-      } else {
+          var posts = [];
+
+          for (let i = 0; i < this.collectionSize; ++i) {
+            if (this.userPosts[i].index >= this.skip && this.userPosts[i].index < this.limit) {
+              posts.push(this.userPosts[i]);
+            }
+          }
+
+          this.userPostsToDisplay = posts;
+        } else {
+          this.showUhOh = true;
+        }
+      },
+      () => {
         this.showUhOh = true;
       }
-    });
+    );
   }
 
   // calculate default page size

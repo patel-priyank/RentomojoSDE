@@ -51,13 +51,18 @@ export class HomeComponent implements OnInit {
 
   // fetch user list
   private async fetchUsers(): Promise<void> {
-    await this.appService.fetchUsers().subscribe((r) => {
-      if (r) {
-        this.allUsers = r;
-      } else {
+    await this.appService.fetchUsers().subscribe(
+      (r) => {
+        if (r) {
+          this.allUsers = r;
+        } else {
+          this.showUhOh = true;
+        }
+      },
+      () => {
         this.showUhOh = true;
       }
-    });
+    );
   }
 
   //#endregion
