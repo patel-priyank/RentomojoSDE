@@ -4,6 +4,7 @@
 
 .user-card {
   transition: transform 0.2s;
+  width: 20rem;
 }
 
 .user-card:hover {
@@ -42,5 +43,17 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .user-card {
+    width: 40rem;
+  }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1200px) {
+  .user-card {
+    width: 25rem;
   }
 }
