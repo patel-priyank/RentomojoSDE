@@ -58,13 +58,7 @@ export class HomeComponent implements OnInit {
           this.allUsers = r;
 
           setTimeout(() => {
-            if (this.listView) {
-              document.getElementById('listViewBtn').click();
-              document.getElementById('listViewBtn').blur();
-            } else {
-              document.getElementById('cardViewBtn').click();
-              document.getElementById('cardViewBtn').blur();
-            }
+            this.clickViewModeButton();
           }, 0);
         } else {
           this.showUhOh = true;
@@ -74,6 +68,17 @@ export class HomeComponent implements OnInit {
         this.showUhOh = true;
       }
     );
+  }
+
+  // select view mode button after fetching user dataa
+  private clickViewModeButton(): void {
+    if (this.listView) {
+      document.getElementById('listViewBtn').click();
+      document.getElementById('listViewBtn').blur();
+    } else {
+      document.getElementById('cardViewBtn').click();
+      document.getElementById('cardViewBtn').blur();
+    }
   }
 
   //#endregion
