@@ -1,4 +1,8 @@
-<div class="mt-4 pl-3 pr-3">
+<div *ngIf="isOffline">
+  <app-offline></app-offline>
+</div>
+
+<div *ngIf="!isOffline" class="mt-4 pl-3 pr-3">
   <p class="h2 text-warning">
     Uh-oh, we've encountered a technical issue. Please try again after we turn a few things off and on again.
   </p>

@@ -7,6 +7,12 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class UhOhComponent implements OnInit {
+  //#region Variables
+
+  public isOffline: boolean; // check offline status
+
+  //#endregion
+
   //#region Constructor
 
   constructor(private router: Router) {}
@@ -15,7 +21,9 @@ export class UhOhComponent implements OnInit {
 
   //#region Angular methods
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isOffline = !navigator.onLine;
+  }
 
   //#endregion
 
