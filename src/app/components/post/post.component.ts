@@ -14,6 +14,7 @@ export class PostComponent implements OnInit {
 
   private userID: number; // current userID
   private postID: number; // current postID
+  public userDetails: any; // to store user details data from API
   public postDetails: any; // to store post details data from API
   public postComments: any; // to store post comments data from API
   public commentsBtnText: string; // text for comments button
@@ -38,6 +39,7 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.initVariables();
     this.checkOffline();
+    this.fetchUserDetails();
     this.fetchPostDetails();
   }
 
@@ -54,6 +56,7 @@ export class PostComponent implements OnInit {
       this.router.navigate(['404']);
     }
 
+    this.userDetails = null;
     this.postDetails = null;
     this.postComments = null;
     this.commentsBtnText = 'Show Comments';
@@ -67,6 +70,22 @@ export class PostComponent implements OnInit {
   // check offline status
   private checkOffline(): void {
     this.isOffline = !navigator.onLine;
+  }
+
+  // fetch user details
+  private async fetchUserDetails(): Promise<void> {
+    await this.appService.fetchUserDetails(this.userID).subscribe(
+      (r) => {
+        if (r) {
+          this.userDetails = r;
+        } else {
+          this.showPostUhOh = true;
+        }
+      },
+      () => {
+        this.showPostUhOh = true;
+      }
+    );
   }
 
   // fetch post details
