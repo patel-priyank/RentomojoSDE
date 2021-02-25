@@ -33,4 +33,9 @@ export class UhOhComponent implements OnInit {
   public refresh(): void {
     location = location;
   }
+
+  // navigate to home page
+  public navigateToHome(): void {
+    this.router.navigate(['']);
+  }
 }
